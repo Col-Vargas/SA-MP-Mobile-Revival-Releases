@@ -1,0 +1,71 @@
+name: Mirror iOS IPA to Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: "file.kiwi URL"
+        required: true
+      release_tag:
+        description: "Release tag"
+        required: true
+        default: "v1.0.20-ios"
+      asset_name:
+        description: "Asset filename"
+        required: true
+        default: "SAMP-Mobile-Revival-GTASA-iOS-M1.ipa"
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Playwright Chromium
+        run: |
+          python3 -m pip install -q playwright
+          python3 -m playwright install chromium
+
+      - name: Download IPA from file.kiwi at datacenter speed
+        env:
+          SOURCE_URL: ${{ inputs.source_url }}
+          ASSET_NAME: ${{ inputs.asset_name }}
+        run: |
+          python3 - <<'PY'
+          import os, time
+          from playwright.sync_api import sync_playwright
+
+          url = os.environ["SOURCE_URL"]
+          out_path = "/tmp/" + os.environ["ASSET_NAME"]
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              context = browser.new_context(accept_downloads=True, locale="en-US")
+              page = context.new_page()
+              print("Opening URL...")
+              page.goto(url, wait_until="networkidle", timeout=60000)
+              page.wait_for_timeout(3000)
+              btn = page.locator('button[title="Download"], button[title="Herunterladen"], button[title*="Download"]').first
+              btn.wait_for(state="visible", timeout=30000)
+              print("Clicking download button...")
+              with page.expect_download(timeout=600000) as dl_info:
+                  btn.click()
+              dl = dl_info.value
+              print("Download started:", dl.suggested_filename)
+              dl.save_as(out_path)
+              browser.close()
+
+          sz = os.path.getsize(out_path)
+          print(f"Saved {out_path} ({sz} bytes)")
+          assert sz > 1_000_000_000, f"File too small: {sz}"
+          PY
+
+      - name: Upload IPA to GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          ASSET_NAME: ${{ inputs.asset_name }}
+        run: |
+          gh release upload "$RELEASE_TAG" "/tmp/$ASSET_NAME" --clobber
+          ls -lh "/tmp/$ASSET_NAME"
