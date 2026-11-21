@@ -5,19 +5,19 @@
   "sourceURL": "https://raw.githubusercontent.com/Col-Vargas/SA-MP-Mobile-Revival-Releases/main/altstore-source.json",
   "apps": [
     {
-      "name": "SA-MP Mobile Revival",
+      "name": "SA:MP Mobile(Revival)",
       "bundleIdentifier": "com.revival.game",
       "developerName": "Revival Team",
       "subtitle": "SA-MP 0.3.DL & omp-cef Mobile Launcher for iOS",
-      "localizedDescription": "Native iOS Launcher for SA-MP Mobile Revival featuring live UDP server browser, 7 languages, PVRTC game data downloader, and native ARM64 KCP + WKWebView omp-cef v1.3.4.0 support.",
-      "tintColor": "#E0B43D",
+      "localizedDescription": "Native iOS Launcher for SA:MP Mobile(Revival) featuring live UDP server browser, 7 languages, PVRTC game data downloader, and native ARM64 KCP + WKWebView omp-cef v1.3.4.0 support.",
+      "tintColor": "#D72943",
       "versions": [
         {
-          "version": "1.0.18",
+          "version": "1.0.19",
           "date": "2026-11-21",
-          "localizedDescription": "Initial iOS release: Native SwiftUI Launcher, UDP SA-MP query, Hugging Face PVRTC data downloader, 64-bit ARM64 KCP + WKWebView omp-cef core, and AltStore/SideStore update feed.",
-          "downloadURL": "https://github.com/Col-Vargas/SA-MP-Mobile-Revival-Releases/releases/download/v1.0.18-ios/SAMP-Mobile-Revival-iOS-v1.0.18.ipa",
-          "size": 2813226,
+          "localizedDescription": "Exact 1:1 Android SA:MP Mobile(Revival) branding, icon, logo, crimson/plum theme, top header, and Home layout.",
+          "downloadURL": "https://github.com/Col-Vargas/SA-MP-Mobile-Revival-Releases/releases/download/v1.0.19-ios/SAMP-Mobile-Revival-iOS-v1.0.19.ipa",
+          "size": 3941166,
           "minOSVersion": "14.0"
         }
       ],
