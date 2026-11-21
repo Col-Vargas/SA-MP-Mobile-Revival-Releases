@@ -13,6 +13,14 @@
       "tintColor": "#D72943",
       "versions": [
         {
+          "version": "1.0.20",
+          "date": "2026-11-21",
+          "localizedDescription": "Added 1-tap SideStore GTA:SA ARM64 (Revival M1) installer directly from Hugging Face.",
+          "downloadURL": "https://github.com/Col-Vargas/SA-MP-Mobile-Revival-Releases/releases/download/v1.0.20-ios/SAMP-Mobile-Revival-iOS-v1.0.20.ipa",
+          "size": 3942162,
+          "minOSVersion": "14.0"
+        },
+        {
           "version": "1.0.19",
           "date": "2026-11-21",
           "localizedDescription": "Exact 1:1 Android SA:MP Mobile(Revival) branding, icon, logo, crimson/plum theme, top header, and Home layout.",
@@ -26,6 +34,28 @@
         "privacy": {
           "NSLocalNetworkUsageDescription": "Used to query SA-MP game servers and connect via UDP/KCP."
         }
+      }
+    },
+    {
+      "name": "SA:MP Mobile(Revival) GTA:SA",
+      "bundleIdentifier": "com.rockstargames.gta3sa",
+      "developerName": "Revival Team",
+      "subtitle": "GTA:SA ARM64 with libRevivalSAMP.dylib (Milestone 1)",
+      "localizedDescription": "GTA:SA iOS ARM64 with injected libRevivalSAMP.dylib (fishhook + ikcp + Revival overlay + Files log access) hosted on Hugging Face.",
+      "tintColor": "#D72943",
+      "versions": [
+        {
+          "version": "2.2.21",
+          "date": "2026-11-21",
+          "localizedDescription": "Phase 3 Milestone 1: libRevivalSAMP.dylib injected via LC_LOAD_DYLIB with ARM64 overlay and Documents/SAMP/samp_ios_log.txt logging.",
+          "downloadURL": "https://huggingface.co/datasets/ComradeHolmes/samp-mobile-revival-ios/resolve/main/SAMP-Mobile-Revival-GTASA-iOS-M1.ipa",
+          "size": 1916366303,
+          "minOSVersion": "13.0"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
       }
     }
   ],
