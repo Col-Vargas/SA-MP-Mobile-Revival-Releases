@@ -1,0 +1,25 @@
+name: Release Notification
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  discord-notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord
+        uses: tsickert/discord-webhook@v6.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: "GitHub-SA:MP-Revival-Launcher"
+          avatar-url: "https://githubassets.com"
+          embed-title: "${{ github.event.repository.name }} — ${{ github.event.release.tag_name }} is now live"
+          embed-url: "${{ github.event.release.html_url }}"
+          embed-description: "${{ github.event.release.body }}"
+          embed-color: 2829617
+          embed-author-name: "Released by ${{ github.event.release.author.login }}"
+          embed-author-url: "${{ github.event.release.author.html_url }}"
+          embed-author-icon-url: "${{ github.event.release.author.avatar_url }}"
+          embed-footer-text: "GitHub Releases"
+          embed-timestamp: true
